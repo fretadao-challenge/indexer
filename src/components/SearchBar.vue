@@ -30,7 +30,6 @@ export default {
           const { data } = response;
           this.$store.dispatch('searchResults', { searchResults: data });
           this.$router.push({ name: 'ProfileList' });
-          console.log(this.$router);
         })
         .catch((e) => {
           this.errors.push(e);

@@ -2,6 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
+
         <q-btn
           flat
           dense
@@ -11,7 +12,10 @@
           aria-label="Menu"
         />
 
-        <q-toolbar-title>
+        <q-toolbar-title
+          @click="$router.push('/')"
+          class="link-title"
+        >
           Profile Indexer
         </q-toolbar-title>
       </q-toolbar>
@@ -25,18 +29,22 @@
     >
       <q-list>
         <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item clickable tag="a" @click="goToProfileForm()">
           <q-item-section avatar>
             <q-icon name="add" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Add Member</q-item-label>
+            <q-item-label>Add Profile</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
 
     <q-page-container>
+      <q-btn
+        @click="goBack"
+        aria-label="Return"
+      >Return</q-btn>
       <router-view />
     </q-page-container>
   </q-layout>
@@ -51,5 +59,19 @@ export default {
       leftDrawerOpen: false,
     };
   },
+  methods: {
+    goToProfileForm() {
+      this.$router.push({ name: 'ProfileForm' });
+    },
+    goBack() {
+      window.history.go(-1);
+    },
+  },
 };
 </script>
+
+<style scoped>
+.link-title {
+  cursor: pointer;
+}
+</style>
