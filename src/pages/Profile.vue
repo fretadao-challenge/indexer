@@ -6,19 +6,19 @@
           <q-icon name="edit"/>
         </q-btn>
         <q-btn round class="q-ml-sm">
-          <q-icon name="delete"/>
+          <q-icon name="delete" @click="deleteProfile()"/>
         </q-btn>
       </q-card-section>
       <q-card-section>
-        <div class="text-h6">{{ name }}</div>
-        <div class="text-subtitle2">a.k.a {{ username }}</div>
-        <div class="text-subtitle2">{{ shortenedURL }}</div>
+        <div class="text-h6">{{ this.name }}</div>
+        <div class="text-subtitle2">a.k.a {{ this.username }}</div>
+        <div class="text-subtitle2">{{ this.shortenedURL }}</div>
       </q-card-section>
 
       <q-separator dark inset />
 
       <q-card-section>
-        {{ description }}
+        {{ this.description }}
       </q-card-section>
 
     </q-card>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { HTTP } from '../boot/axios.js';
 
 export default {
   name: 'Profile',
@@ -37,6 +38,35 @@ export default {
       description: 'descriptiondescriptiondescriptiondescription',
     };
   },
+  methods: {
+    getProfile() {
+      console.log(this.$route.params.id);
+      HTTP.get(`profiles/${this.$route.params.id}`)
+        .then((response) => {
+          const { data } = response;
+          this.name = data.name;
+          this.username = data.username;
+          this.description = data.description;
+          this.shortenedURL = data.shortenedURL;
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
+    deleteProfile() {
+      HTTP.delete(`profiles/${this.$route.params.id}`)
+        .then(() => {
+          this.$router.push({ name: 'Home' });
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
+  },
+  created() {
+    this.getProfile();
+  },
+
 };
 </script>
 
