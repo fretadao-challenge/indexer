@@ -2,12 +2,13 @@
 const routes = [
   {
     path: '/',
+    name: 'MyLayout',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Home.vue') },
-      { path: '/profiles', component: () => import('pages/ProfileList.vue') },
-      { path: '/register-profile', component: () => import('pages/ProfileForm.vue') },
-      { path: '/profile', component: () => import('pages/Profile.vue') },
+      { path: '', name: 'Home', component: () => import('pages/Home.vue') },
+      { path: '/profiles', name: 'ProfileList', component: () => import('pages/ProfileList.vue') },
+      { path: '/register-profile', name: 'ProfileForm', component: () => import('pages/ProfileForm.vue') },
+      { path: '/profile', name: 'Profile', component: () => import('pages/Profile.vue') },
     ],
   },
 ];
@@ -16,6 +17,7 @@ const routes = [
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
+    name: 'Error404',
     component: () => import('pages/Error404.vue'),
   });
 }
