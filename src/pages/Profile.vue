@@ -1,24 +1,27 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page v-if="isEditing" class="flex flex-center">
+    <ProfileEdit @edited="hasEdited()"/>
+  </q-page>
+  <q-page v-else class="flex flex-center">
     <q-card dark bordered class="text-primary my-card">
       <q-card-section vertical align="right">
         <q-btn round>
-          <q-icon name="edit"/>
+          <q-icon name="edit" @click="isEditing=true"/>
         </q-btn>
-        <q-btn round class="q-ml-sm">
-          <q-icon name="delete" @click="deleteProfile()"/>
+        <q-btn round class="q-ml-sm" @click="deleteProfile()">
+          <q-icon name="delete"/>
         </q-btn>
       </q-card-section>
       <q-card-section>
-        <div class="text-h6">{{ this.name }}</div>
-        <div class="text-subtitle2">a.k.a {{ this.username }}</div>
-        <div class="text-subtitle2">{{ this.shortenedURL }}</div>
+        <div class="text-h6">{{ name }}</div>
+        <div class="text-subtitle2">a.k.a {{ username }}</div>
+        <div class="text-subtitle2">{{ shortenedURL }}</div>
       </q-card-section>
 
       <q-separator dark inset />
 
       <q-card-section>
-        {{ this.description }}
+        {{ description }}
       </q-card-section>
 
     </q-card>
@@ -26,41 +29,28 @@
 </template>
 
 <script>
-import { HTTP } from '../boot/axios.js';
+import Mixin from '../mixins/helper';
+import ProfileEdit from './ProfileEdit';
 
 export default {
   name: 'Profile',
+  mixins: [Mixin],
+  components: {
+    ProfileEdit,
+  },
   data() {
     return {
       name: 'Profile twitter name',
       shortenedURL: 'bit.ly/asdf',
       username: '@profile-username',
       description: 'descriptiondescriptiondescriptiondescription',
+      isEditing: false,
     };
   },
   methods: {
-    getProfile() {
-      console.log(this.$route.params.id);
-      HTTP.get(`profiles/${this.$route.params.id}`)
-        .then((response) => {
-          const { data } = response;
-          this.name = data.name;
-          this.username = data.username;
-          this.description = data.description;
-          this.shortenedURL = data.shortenedURL;
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
-    },
-    deleteProfile() {
-      HTTP.delete(`profiles/${this.$route.params.id}`)
-        .then(() => {
-          this.$router.push({ name: 'Home' });
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
+    hasEdited() {
+      this.isEditing = false;
+      this.getProfile();
     },
   },
   created() {

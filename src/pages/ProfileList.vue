@@ -15,7 +15,7 @@
 
         <q-item-section avatar>
           <q-icon @click="goToProfile(profile)" name="info"/>
-          <q-icon name="edit"/>
+          <q-icon @click="goToProfileEdit()" name="edit"/>
         </q-item-section>
       </q-item>
     </q-list>
@@ -24,11 +24,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import goToProfileMixin from '../mixins/helper';
+import Mixin from '../mixins/helper';
 
 export default {
   name: 'ProfileList',
-  mixins: [goToProfileMixin],
+  mixins: [Mixin],
   computed: {
     ...mapState({
       searchResults: state => state.search.searchResults,

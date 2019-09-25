@@ -31,11 +31,11 @@
 
 <script>
 import { HTTP } from '../boot/axios.js';
-import goToProfileMixin from '../mixins/helper';
+import Mixin from '../mixins/helper';
 
 export default {
   name: 'ProfileForm',
-  mixins: [goToProfileMixin],
+  mixins: [Mixin],
   data() {
     return {
       name: null,
