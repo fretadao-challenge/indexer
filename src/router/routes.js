@@ -8,7 +8,7 @@ const routes = [
       { path: '', name: 'Home', component: () => import('pages/Home.vue') },
       { path: '/profiles', name: 'ProfileList', component: () => import('pages/ProfileList.vue') },
       { path: '/register-profile', name: 'ProfileForm', component: () => import('pages/ProfileForm.vue') },
-      { path: '/profile', name: 'Profile', component: () => import('pages/Profile.vue') },
+      { path: '/profile/:id', name: 'Profile', component: () => import('pages/Profile.vue') },
     ],
   },
 ];
