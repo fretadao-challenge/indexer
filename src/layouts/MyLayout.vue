@@ -2,7 +2,6 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-
         <q-btn
           flat
           dense
@@ -14,7 +13,7 @@
 
         <q-toolbar-title
           @click="$router.push('/')"
-          class="link-title"
+          class="link-title text-center"
         >
           Profile Indexer
         </q-toolbar-title>
@@ -28,7 +27,16 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+        <q-item-label header>Useful Links</q-item-label>
+        <q-item clickable tag="a" @click="goBack()">
+          <q-item-section avatar>
+            <q-icon name="chevron_left" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Return</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-separator/>
         <q-item clickable tag="a" @click="goToProfileForm()">
           <q-item-section avatar>
             <q-icon name="add" />
@@ -41,10 +49,6 @@
     </q-drawer>
 
     <q-page-container>
-      <q-btn
-        @click="goBack"
-        aria-label="Return"
-      >Return</q-btn>
       <router-view />
     </q-page-container>
   </q-layout>

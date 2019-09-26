@@ -1,9 +1,11 @@
 <template>
-  <q-card dark bordered class="text-primary my-card">
+  <q-card dark bordered class="profile-card text-primary my-card">
     <q-card-section vertical align="right">
-      <q-btn round class="q-ml-sm">
-        <q-icon name="delete" @click="deleteProfile()"/>
-      </q-btn>
+      <q-btn label="Delete"
+             color="red"
+             outline
+             icon="delete"
+             @click="deleteProfile()"/>
     </q-card-section>
     <q-card-section>
       <q-form
@@ -12,10 +14,18 @@
       >
         <q-input filled v-model="name" label="Name" />
         <q-input filled v-model="twitter_url" label="Twitter URL" />
-        <q-btn label="Save"
-               type="submit"
-               color="primary"
-        />
+        <div class="q-mt-xl row justify-around">
+          <q-btn label="Save"
+                type="submit"
+                color="primary"
+                class="q-px-xl"
+          />
+          <q-btn label="Cancel"
+                @click="$emit('edited')"
+                color="grey"
+                class="q-px-xl"
+          />
+        </div>
       </q-form>
     </q-card-section>
 

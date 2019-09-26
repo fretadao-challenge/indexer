@@ -1,9 +1,9 @@
 <template>
-  <q-page class="flex flex-center">
-    <h1>Register Profile</h1>
+  <q-page class="q-mt-xl column justify-content-center">
+    <h1 class="text-center">Register Profile</h1>
     <q-form
       @submit="onSubmit()"
-      class="q-gutter-md"
+      class="q-gutter-md profile-card register-profile"
     >
       <q-input
         filled
@@ -63,4 +63,9 @@ export default {
 </script>
 
 <style scoped>
+.register-profile {
+  max-width: 80%;
+  min-width: 60%;
+  margin: 0 auto;
+}
 </style>

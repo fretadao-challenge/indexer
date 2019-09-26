@@ -3,7 +3,7 @@
     <ProfileEdit @edited="hasEdited()"/>
   </q-page>
   <q-page v-else class="flex flex-center">
-    <q-card dark bordered class="text-primary my-card">
+    <q-card dark bordered class="profile-card text-primary my-card">
       <q-card-section vertical align="right">
         <q-btn round>
           <q-icon name="edit" @click="isEditing=true"/>
@@ -61,5 +61,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.profile-card {
+  min-width: 50%;
+  padding: 30px;
+}
 </style>

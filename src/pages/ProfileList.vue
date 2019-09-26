@@ -1,23 +1,28 @@
 <template>
-  <q-page class="flex flex-center">
-    <h1>Search Results</h1>
-    <q-list v-for="profile in searchResults" :key="profile.username">
-      <q-item clickable>
-        <q-item-section avatar>
-          <q-avatar color="primary" text-color="white">
-            {{profile.name[0].toUpperCase()}}
-          </q-avatar>
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ profile.name }}</q-item-label>
-          <q-item-label caption>{{ profile.shortened_url  }}</q-item-label>
-        </q-item-section>
+  <q-page class="column justify-content-center">
+    <div class="q-px-xl">
+      <h1 class="text-center">Search Results</h1>
+      <q-list class="q-px-xl" v-for="profile in searchResults" :key="profile.username">
+        <q-card flat>
+          <q-item clickable @click="goToProfile(profile)">
+            <q-item-section avatar>
+              <q-avatar color="primary" text-color="white">
+                {{profile.name[0].toUpperCase()}}
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>{{ profile.name }}</q-item-label>
+              <q-item-label caption>{{ profile.shortened_url  }}</q-item-label>
+            </q-item-section>
 
-        <q-item-section avatar>
-          <q-icon @click="goToProfile(profile)" name="info"/>
-        </q-item-section>
-      </q-item>
-    </q-list>
+            <q-item-section avatar>
+              <q-icon name="visibility"/>
+            </q-item-section>
+          </q-item>
+          <q-separator/>
+        </q-card>
+      </q-list>
+    </div>
   </q-page>
 </template>
 

@@ -1,7 +1,9 @@
 <template>
-  <q-page class="flex flex-center">
-    <h1>Profile Indexer</h1>
-    <search-bar></search-bar>
+  <q-page class="column justify-content-center">
+    <h1 class="text-center">Profile Indexer</h1>
+    <div class="flex justify-center">
+      <search-bar></search-bar>
+    </div>
   </q-page>
 </template>
 
@@ -17,4 +19,7 @@ export default {
 </script>
 
 <style scoped>
+.justify-content-center {
+  justify-content: center;
+}
 </style>

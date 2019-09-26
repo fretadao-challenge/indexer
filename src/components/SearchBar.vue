@@ -3,9 +3,14 @@
            @keyup.enter="search()"
            ref="search"
            filled
+           label="Type a Twitter username, name or description"
            type="search"
-           hint="Search">
-    <q-icon name="search"/>
+           class="search-bar"
+           :dense="dense"
+           >
+    <template v-slot:append>
+      <q-icon name="search"/>
+    </template>
   </q-input>
 </template>
 
@@ -40,4 +45,8 @@ export default {
 </script>
 
 <style scoped>
+.search-bar {
+  max-width: 80%;
+  min-width: 60%;
+}
 </style>
