@@ -1,0 +1,28 @@
+language: node_js
+
+node_js: 
+  - 11
+
+cache:
+  directories:
+   - $PWD/node_modules/
+
+install:
+  - yarn install
+
+env:
+  global:
+    - RAILS_ENV=test
+
+jobs:
+  include:
+    - name: "Build App"
+      script: yarn build:pwa
+    - name: "ESLint"
+      script: yarn lint
+    - name: "Docker Builds"
+      script: docker build -t indexer .
+
+branches:
+  only:
+    - master
