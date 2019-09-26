@@ -1,0 +1,7 @@
+#!/bin/bash
+
+>&2 echo 'INSTALLING DEPENDENCIES'
+yarn check || yarn install
+
+>&2 echo 'RUNNING SERVER'
+yarn dev

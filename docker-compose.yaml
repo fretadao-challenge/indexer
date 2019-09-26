@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+
+  web:
+    container_name: indexer
+    build: .
+    volumes:
+      - .:/indexer
+      - ./node_modules/:/indexer/node_modules/
+    command: ["sh", "script/sh/entrypoint"]
+    external_links:
+      - indexer-net
+    networks: 
+      - indexer-net
+    ports:
+      - 8080:8080
+
+networks:
+  indexer-net:
+    name: indexer-net
+    external: true
