@@ -19,6 +19,7 @@
                 type="submit"
                 color="primary"
                 class="q-px-xl"
+                :loading="loading"
           />
           <q-btn label="Cancel"
                 @click="$emit('edited')"
@@ -45,10 +46,12 @@ export default {
     return {
       name: '',
       twitter_url: '',
+      loading: false,
     };
   },
   methods: {
     editProfile() {
+      this.loading = true;
       HTTP.put(`profiles/${this.$route.params.id}`, {
         name: this.name,
         twitter_url: this.twitter_url,
@@ -59,6 +62,9 @@ export default {
         })
         .catch((e) => {
           this.errors.push(e);
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
   },

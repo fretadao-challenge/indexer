@@ -2,6 +2,7 @@
   <q-input v-model="query"
            @keyup.enter="search()"
            ref="search"
+           :loading="loading"
            filled
            label="Type a Twitter username, name or description"
            type="search"
@@ -22,10 +23,12 @@ export default {
   data() {
     return {
       query: '',
+      loading: false,
     };
   },
   methods: {
     search() {
+      this.loading = true;
       HTTP.get('search', {
         params: {
           query: this.query,
@@ -38,6 +41,9 @@ export default {
         })
         .catch((e) => {
           this.errors.push(e);
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
   },

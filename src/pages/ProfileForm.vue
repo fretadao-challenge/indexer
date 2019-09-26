@@ -22,6 +22,7 @@
         <q-btn label="Submit"
                type="submit"
                color="primary"
+               :loading="loading"
         />
       </div>
     </q-form>
@@ -40,10 +41,12 @@ export default {
     return {
       name: null,
       twitter_url: null,
+      loading: false,
     };
   },
   methods: {
     onSubmit() {
+      this.loading = true;
       HTTP.post('profiles', {
         profile: {
           name: this.name,
@@ -55,6 +58,9 @@ export default {
         })
         .catch((e) => {
           this.errors.push(e);
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
   },
