@@ -1,3 +1,4 @@
+import { Notify } from 'quasar';
 import { HTTP } from '../boot/axios.js';
 
 const Mixin = {
@@ -12,6 +13,11 @@ const Mixin = {
       HTTP.delete(`profiles/${this.$route.params.id}`)
         .then(() => {
           this.$router.push({ name: 'Home' });
+          Notify.create({
+            message: 'Profile successfully deleted',
+            color: 'red',
+            position: 'top-right',
+          });
         })
         .catch((e) => {
           this.errors.push(e);

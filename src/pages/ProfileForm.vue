@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { Notify } from 'quasar';
 import { HTTP } from '../boot/axios.js';
 import Mixin from '../mixins/helper';
 
@@ -55,6 +56,11 @@ export default {
       })
         .then((response) => {
           this.goToProfile(response.data);
+          Notify.create({
+            message: 'Profile successfully created',
+            color: 'green',
+            position: 'top-right',
+          });
         })
         .catch((e) => {
           this.errors.push(e);

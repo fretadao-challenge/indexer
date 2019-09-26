@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { Notify } from 'quasar';
 import { HTTP } from '../boot/axios.js';
 import Mixin from '../mixins/helper';
 
@@ -59,6 +60,11 @@ export default {
         .then(() => {
           this.$emit('edited');
           this.$router.push({ name: 'Profile' });
+          Notify.create({
+            message: 'Profile successfully edited',
+            color: 'green',
+            position: 'top-right',
+          });
         })
         .catch((e) => {
           this.errors.push(e);

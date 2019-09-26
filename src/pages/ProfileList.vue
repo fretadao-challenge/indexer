@@ -2,7 +2,10 @@
   <q-page class="column justify-content-center">
     <div class="q-px-xl">
       <h1 class="text-center">Search Results</h1>
-      <q-list class="q-px-xl" v-for="profile in searchResults" :key="profile.username">
+      <div v-if="searchResults.length < 1">
+        <h3 class="text-blue-grey flex flex-center">No Results Found</h3>
+      </div>
+      <q-list v-else class="q-px-xl" v-for="profile in searchResults" :key="profile.username">
         <q-card flat>
           <q-item clickable @click="goToProfile(profile)">
             <q-item-section avatar>
