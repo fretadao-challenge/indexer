@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "quasar dev",
     "build:pwa": "quasar build -m pwa",
-    "deploy": "surge dist/pwa indexer.surge.sh",
+    "deploy": "cp src/boot/axios.production.js src/boot/axios.js && surge dist/pwa indexer.surge.sh",
+    "clean:deploy": "surge teardown indexer.surge.sh",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
