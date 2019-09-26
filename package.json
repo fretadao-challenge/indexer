@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "quasar dev",
     "build:pwa": "quasar build -m pwa",
+    "deploy": "surge dist/pwa indexer.surge.sh",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -24,7 +25,8 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
-    "eslint-plugin-vue": "^5.0.0"
+    "eslint-plugin-vue": "^5.0.0",
+    "surge": "^0.21.3"
   },
   "engines": {
     "node": ">= 8.9.0",
