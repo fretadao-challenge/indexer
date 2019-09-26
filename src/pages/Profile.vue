@@ -14,10 +14,11 @@
       </q-card-section>
       <q-card-section>
         <div class="text-h6">{{ name }}</div>
-        <div class="text-subtitle2">a.k.a {{ username }}</div>
-        <div class="text-subtitle2">{{ shortenedURL }}</div>
+        <div class="text-subtitle2">a.k.a @{{ username }}</div>
       </q-card-section>
-
+      <q-card-section>
+        <div class="text-subtitle2">{{ shortened_url }}</div>
+      </q-card-section>
       <q-separator dark inset />
 
       <q-card-section>
@@ -40,10 +41,10 @@ export default {
   },
   data() {
     return {
-      name: 'Profile twitter name',
-      shortenedURL: 'bit.ly/asdf',
-      username: '@profile-username',
-      description: 'descriptiondescriptiondescriptiondescription',
+      name: '',
+      shortened_url: '',
+      username: '',
+      description: '',
       isEditing: false,
     };
   },

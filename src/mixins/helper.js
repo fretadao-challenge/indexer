@@ -22,6 +22,9 @@ const Mixin = {
         .then((response) => {
           const { data } = response;
           this.name = data.name;
+          this.shortened_url = data.shortened_url;
+          this.username = data.username;
+          this.description = data.description;
           this.twitter_url = data.twitter_url;
         })
         .catch((e) => {

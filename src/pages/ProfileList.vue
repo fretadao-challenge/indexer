@@ -10,12 +10,11 @@
         </q-item-section>
         <q-item-section>
           <q-item-label>{{ profile.name }}</q-item-label>
-          <q-item-label caption>Shortened URL</q-item-label>
+          <q-item-label caption>{{ profile.shortened_url  }}</q-item-label>
         </q-item-section>
 
         <q-item-section avatar>
           <q-icon @click="goToProfile(profile)" name="info"/>
-          <q-icon @click="goToProfileEdit()" name="edit"/>
         </q-item-section>
       </q-item>
     </q-list>

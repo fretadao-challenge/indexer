@@ -12,7 +12,7 @@
       >
         <q-input filled v-model="name" label="Name" />
         <q-input filled v-model="twitter_url" label="Twitter URL" />
-        <q-btn label="Submit"
+        <q-btn label="Save"
                type="submit"
                color="primary"
         />
